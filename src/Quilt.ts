@@ -57,9 +57,8 @@ export const sparkle = spark
     .combine(spark.scaleXY(1, -1))
     .shift(up2).shift(right2)
 
-export const both = star.combine(sparkle.shift(right.scale(4)))
-
-export const quad = both.combine(both.flipX().shift(down.scale(4)))
+// export const both = star.combine(sparkle.shift(right.scale(4)))
+// export const quad = both.combine(both.flipX().shift(down.scale(4)))
 
 export const border = (interior: MultiPoly): MultiPoly => {
     const v = multiSquare.scaleXY(2, interior.bound.height + 6) // vertical border
