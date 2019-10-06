@@ -3,6 +3,7 @@ import styles from "./App.module.css"
 import {Colors} from "./Colors"
 import {AppReducer} from "./Reducer"
 import {DEFAULT_APP_STATE} from "./State"
+import {Toggle} from "./Toggle"
 
 const App: React.FC = () => {
     const [ state, dispatch ] = useReducer(AppReducer, DEFAULT_APP_STATE)
@@ -15,7 +16,24 @@ const App: React.FC = () => {
             <h1 className={styles.row}>
                 Quilt
             </h1>
-            <Colors colors={state.colors} remove={remove} add={addColor} change={changeColor}/>
+            <div className={styles.row}>
+            {
+                state.pickers.entrySeq().map(([name, value], index) =>
+                    <Toggle
+                        key={index}
+                        name={name}
+                        value={value}
+                        toggle={() => dispatch({type: "toggle picker", name})}
+                    />
+                )
+            }
+            </div>
+            <Colors
+                {...state}
+                remove={remove}
+                add={addColor}
+                change={changeColor}
+            />
         </>
   )
 }

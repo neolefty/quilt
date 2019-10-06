@@ -1,4 +1,4 @@
-export type AppAction = Action & (NullAction | ChangeColorAction | AddColorAction | RemoveColorAction)
+export type AppAction = Action & (NullAction | ChangeColorAction | AddColorAction | RemoveColorAction | TogglePickerAction)
 
 export interface Action {
     type: string
@@ -21,4 +21,9 @@ export interface RemoveColorAction {
 
 export interface NullAction {
     type: "null"
+}
+
+export interface TogglePickerAction {
+    type: "toggle picker"
+    name: string
 }

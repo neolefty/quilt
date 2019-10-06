@@ -1,9 +1,10 @@
-import {List} from "immutable"
+import {List, Map} from "immutable"
 import React from "react"
 import {ChromePicker, ColorResult, SketchPicker} from "react-color"
 import styles from "./App.module.css"
 
 interface ColorsProps {
+    pickers: Map<string, boolean>
     colors: List<string>
     remove: (index: number) => void
     add: () => void
@@ -27,9 +28,15 @@ export const Colors = (props: ColorsProps) => {
                 props.colors.map((color: string, index: number) => (
                     <div key={index} className={styles.row}>
                         <button onClick={() => props.remove(index)}>-</button>
-                        <input type="color" value={color} onChange={e => props.change(index, e.target.value)}/>
-                        <ChromePicker {...colorProps(index)}/>
-                        <SketchPicker {...colorProps(index)}/>
+                        { props.pickers.get("default") &&
+                            <input type="color" value={color} onChange={e => props.change(index, e.target.value)}/>
+                        }
+                        {props.pickers.get("sketch") &&
+                            <SketchPicker {...colorProps(index)}/>
+                        }
+                        {props.pickers.get("chrome") &&
+                            <ChromePicker {...colorProps(index)}/>
+                        }
                         <button onClick={() => props.remove(index)}>-</button>
                     </div>
                 ))

@@ -22,6 +22,11 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
                 ...state,
                 colors: state.colors.remove(action.index),
             }
+        case "toggle picker":
+            return {
+                ...state,
+                pickers: state.pickers.set(action.name, !state.pickers.get(action.name, false)),
+            }
         default:
             return assertNever(action)
     }

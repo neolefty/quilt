@@ -1,0 +1,15 @@
+.base {
+    margin: 10px;
+}
+
+.true {
+    composes: base;
+    color: white;
+    background: black;
+}
+
+.false {
+    composes: base;
+    color: black;
+    background: white;
+}
