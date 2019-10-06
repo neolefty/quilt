@@ -1,15 +1,16 @@
 .base {
-    margin: 10px;
+    margin: 3px;
+    padding: 3px;
 }
 
 .true {
     composes: base;
-    color: white;
+    color: rgba(255, 255, 255, 100);
     background: black;
 }
 
 .false {
     composes: base;
     color: black;
-    background: white;
+    background: transparent;
 }

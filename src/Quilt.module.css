@@ -1,0 +1,8 @@
+.quiltSvg {
+    width: 100vmin;
+    height: 100vmin;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
