@@ -26,6 +26,8 @@ export class Point {
         else throw new Error(`can't parse "${json}" as Point`)
     }
 
+    setY(y: number): Point { return new Point(this.x, y) }
+    setX(x: number): Point { return new Point(x, this.y) }
 }
 
 export class Bound {

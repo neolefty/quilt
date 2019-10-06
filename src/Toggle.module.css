@@ -1,6 +1,7 @@
 .base {
     margin: 3px;
     padding: 3px;
+    cursor: default;
 }
 
 .true {

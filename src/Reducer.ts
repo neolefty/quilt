@@ -27,6 +27,16 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
                 ...state,
                 pickers: state.pickers.set(action.name, !state.pickers.get(action.name, false)),
             }
+        case "change quilt size":
+            return {
+                ...state,
+                quiltSize: action.value,
+            }
+        case "show border":
+            return {
+                ...state,
+                showBorder: action.value,
+            }
         default:
             return assertNever(action)
     }
