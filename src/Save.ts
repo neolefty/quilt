@@ -33,9 +33,13 @@ export const restore = (initial: AppState) => {
     }
     result = {
         ...result,
-        showBorder: localStorage.getItem("showBorder") === "yes",
         borderColor: localStorage.getItem("borderColor") || result.borderColor,
     }
+    if (localStorage.getItem("showBorder") !== null)
+        result = {
+            ...result,
+            showBorder: localStorage.getItem("showBorder") === "yes",
+        }
     return result
 }
 export const save = (state: AppState) => {
