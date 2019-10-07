@@ -4,7 +4,7 @@ import styles from "./App.module.css"
 import {Colors} from "./Colors"
 import {PickerToggles} from "./PickerToggles"
 import {Point} from './Point'
-import {border, starGrid} from './Quilt'
+import {starGrid} from './Quilt'
 import {QuiltSvg} from "./QuiltSvg"
 import {AppReducer} from "./Reducer"
 import {restore, save} from "./Save"
