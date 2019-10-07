@@ -1,3 +1,5 @@
+.noPrint {}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -7,4 +9,16 @@
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.error {
+    color: #700;
+    margin: 1em;
+    background: #eef;
+}
+
+@media print {
+    .noPrint {
+        visibility: hidden;
+    }
 }

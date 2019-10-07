@@ -60,15 +60,18 @@ export const sparkle = spark
 // export const both = star.combine(sparkle.shift(right.scale(4)))
 // export const quad = both.combine(both.flipX().shift(down.scale(4)))
 
-export const border = (interior: MultiPoly): MultiPoly => {
+export const border = (interior: MultiPoly, includeInterior: boolean): MultiPoly => {
     const v = multiSquare.scaleXY(2, interior.bound.height + 6) // vertical border
     const h = multiSquare.scaleXY(interior.bound.width + 2, 2) // horizontal border
     const b = interior.bound
-    return interior
-        .combine(h.shiftXY(b.left - 1, b.bottom - 3)) // bottom
-        .combine(h.shiftXY(b.left - 1, b.top + 1)) // top
-        .combine(v.shiftXY(b.left - 3, b.bottom - 3)) // left
-        .combine(v.shiftXY(b.right + 1, b.bottom - 3)) // right
+    const border =
+        h.shiftXY(b.left - 1, b.bottom - 3) // bottom
+            .combine(h.shiftXY(b.left - 1, b.top + 1)) // top
+            .combine(v.shiftXY(b.left - 3, b.bottom - 3)) // left
+            .combine(v.shiftXY(b.right + 1, b.bottom - 3)) // right
+    return includeInterior
+        ? interior.combine(border)
+        : border
 }
 
 export const starGrid = (x: number, y: number): MultiPoly => {

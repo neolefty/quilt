@@ -6,6 +6,8 @@ import {IntInput} from './IntInput'
 interface ShapeControlProps {
     quiltSize: Point
     showBorder: boolean
+    borderColor: string
+    setBorderColor: (color: string) => void
     setQuiltSize: (value: Point) => void
     toggleShowBorder: () => void
 }
@@ -13,6 +15,14 @@ interface ShapeControlProps {
 export const ShapeControl = (props: ShapeControlProps) =>
     <>
         <Toggle name="Border" toggle={props.toggleShowBorder} value={props.showBorder}/>
+        { props.showBorder &&
+            <input
+                type="color"
+                value={props.borderColor}
+                onChange={e => props.setBorderColor(e.target.value)}
+            />
+
+        }
         <IntInput
             name="Width"
             value={props.quiltSize.x}

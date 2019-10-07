@@ -1,3 +1,4 @@
+import {List} from "immutable"
 import {AppAction} from "./Action"
 import {assertNever} from "./Common"
 import {AppState, DEFAULT_APP_STATE} from "./State"
@@ -36,6 +37,22 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
             return {
                 ...state,
                 showBorder: action.value,
+            }
+        case "double colors":
+            return {
+                ...state,
+                colors: List<string>().withMutations(result =>
+                    state.colors.forEach((color, index) => {
+                        result.push(color)
+                        if (action.value === index || action.value === undefined)
+                            result.push(color)
+                    })
+                )
+            }
+        case "border color":
+            return {
+                ...state,
+                borderColor: action.value
             }
         default:
             return assertNever(action)

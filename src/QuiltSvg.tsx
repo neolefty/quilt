@@ -2,38 +2,49 @@ import {List} from "immutable"
 import React from "react"
 import {Bound} from "./Point"
 import {MultiPoly} from "./Poly"
+import {border} from "./Quilt"
 import styles from "./Quilt.module.css"
 
 interface QuiltProps {
     colors: List<string>
     poly: MultiPoly
-    showBorder?: boolean
+    extraBorderColor?: string
+    showOutline?: boolean
 }
 
-export const QuiltSvg = (props: QuiltProps) =>
-    <svg
-        className={styles.quiltSvg}
-        viewBox={props.poly.bound.expand(props.showBorder ? 0.04 : 0).toViewBox()}
-    >
-        <defs>
-            <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-                {
-                    props.colors.map((color, index) =>
-                        <stop
-                            key={index}
-                            offset={`${100 * index / (props.colors.size - 1)}%`}
-                            stopColor={color}
-                            stopOpacity={1}
-                        />
-                    )
-                }
-            </linearGradient>
-        </defs>
-        { props.showBorder &&
+export const QuiltSvg = (props: QuiltProps) => {
+    const borderPoly = props.extraBorderColor ? border(props.poly, false) : undefined
+    const outer = borderPoly || props.poly
+
+    return (
+        <svg
+            className={styles.quiltSvg}
+            viewBox={outer.bound.expand(props.showOutline ? 0.04 : 0).toViewBox()}
+        >
+            <defs>
+                <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    {
+                        props.colors.map((color, index) =>
+                            <stop
+                                key={index}
+                                offset={`${100 * index / (props.colors.size - 1)}%`}
+                                stopColor={color}
+                                stopOpacity={1}
+                            />
+                        )
+                    }
+                </linearGradient>
+            </defs>
+            { props.showOutline &&
             <BoundSvg bound={props.poly.bound}/>
-        }
-        <path d={props.poly.toPath()} fill="url(#bg)"/>
-    </svg>
+            }
+            { borderPoly &&
+                <path d={borderPoly.toPath()} fill={props.extraBorderColor} />
+            }
+            <path d={props.poly.toPath()} fill="url(#bg)"/>
+        </svg>
+    )
+}
 
 type BoundSvgProps = { bound: Bound }
 

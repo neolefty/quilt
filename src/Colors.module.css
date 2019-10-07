@@ -1,0 +1,15 @@
+.web {
+    font-size: 80%;
+    width: 10em;
+    padding: .2em;
+}
+
+.black {
+    float: left;
+    color: black;
+}
+
+.white {
+    float: right;
+    color: white;
+}

@@ -1,22 +1,25 @@
-import React, {useReducer} from 'react'
+import clsx from "clsx"
+import React, {useEffect, useReducer} from 'react'
 import styles from "./App.module.css"
 import {Colors} from "./Colors"
 import {PickerToggles} from "./PickerToggles"
+import {Point} from './Point'
+import {border, starGrid} from './Quilt'
 import {QuiltSvg} from "./QuiltSvg"
 import {AppReducer} from "./Reducer"
-import {DEFAULT_APP_STATE} from "./State"
-import {border, starGrid} from './Quilt'
-import {Point} from './Point'
+import {restore, save} from "./Save"
 import {ShapeControl} from './ShapeControl'
+import {DEFAULT_APP_STATE} from "./State"
 
 const App: React.FC = () => {
-    const [ state, dispatch ] = useReducer(AppReducer, DEFAULT_APP_STATE)
-    let quilt = starGrid(state.quiltSize.x, state.quiltSize.y)
-    if (state.showBorder)
-        quilt = border(quilt)
+    const [ state, dispatch ] = useReducer(AppReducer, restore(DEFAULT_APP_STATE))
+    useEffect(() => save(state))
+    const quilt = starGrid(state.quiltSize.x, state.quiltSize.y)
 
     const changeColor = (index: number, color: string) => dispatch({ type: "change color", index, color })
+    const setBorderColor = (value: string) => dispatch({type: "border color", value})
     const addColor = () => dispatch({ type: "add color" })
+    const doubleColors = (value?: number) => dispatch({ type: "double colors", value })
     const removeColor = (index: number) => dispatch({ type: "remove color", index })
     const togglePicker = (name: string) => dispatch({ type: "toggle picker", name })
     const toggleShowBorder = () => dispatch({ type: 'show border', value: !state.showBorder })
@@ -27,7 +30,7 @@ const App: React.FC = () => {
             <h1 className={styles.row}>
                 Quilt
             </h1>
-            <div className={styles.row}>
+            <div className={clsx(styles.row, styles.noPrint)}>
                 <PickerToggles
                     pickers={state.pickers}
                     toggle={togglePicker}
@@ -35,21 +38,33 @@ const App: React.FC = () => {
                 <ShapeControl
                     quiltSize={state.quiltSize}
                     showBorder={state.showBorder}
+                    borderColor={state.borderColor}
+                    setBorderColor={setBorderColor}
                     toggleShowBorder={toggleShowBorder}
                     setQuiltSize={setQuiltSize}
                 />
             </div>
-            <Colors
-                {...state}
-                remove={removeColor}
-                add={addColor}
-                change={changeColor}
-            />
+            <div className={styles.noPrint}>
+                <Colors
+                    {...state}
+                    remove={removeColor}
+                    add={addColor}
+                    double={doubleColors}
+                    change={changeColor}
+                />
+            </div>
             <QuiltSvg
                 colors={state.colors}
-                poly={quilt} />
+                poly={quilt}
+                extraBorderColor={state.showBorder ? state.borderColor : undefined}
+            />
+            {
+                state.errors.map(e =>
+                    <div className={clsx(styles.error, styles.noPrint)}>{e}</div>
+                )
+            }
         </>
-  )
+    )
 }
 
 export default App;
