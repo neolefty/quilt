@@ -30,8 +30,6 @@ const App: React.FC = () => {
         <>
             <h1 className={clsx(styles.row, styles.noPrint)}>
                 Quilt Color Doodle
-                &mdash;
-                <a href="https://github.com/neolefty/quild">source code</a>
             </h1>
             <div className={clsx(styles.row, styles.noPrint)}>
                 <PickerToggles
@@ -47,6 +45,7 @@ const App: React.FC = () => {
                     setQuiltSize={setQuiltSize}
                 />
                 <button onClick={reset} className={styles.reset}>Reset</button>
+                <a href="https://github.com/neolefty/quilt" target="_blank" className={styles.source}>source code</a>
             </div>
             <div className={styles.noPrint}>
                 <Colors

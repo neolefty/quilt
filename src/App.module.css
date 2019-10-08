@@ -13,14 +13,18 @@
 
 .error {
     color: #700;
-    margin: 1em;
+    margin: 1rem;
     background: #eef;
 }
 
 .reset {
-    margin-left: 2em;
+    margin-left: 2rem;
     font-weight: bold;
     font-size: 120%;
+}
+
+.source {
+    margin-left: 2rem;
 }
 
 @media print {
