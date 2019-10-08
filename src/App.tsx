@@ -24,11 +24,14 @@ const App: React.FC = () => {
     const togglePicker = (name: string) => dispatch({ type: "toggle picker", name })
     const toggleShowBorder = () => dispatch({ type: 'show border', value: !state.showBorder })
     const setQuiltSize = (value: Point) => dispatch({ type: 'change quilt size', value })
+    const reset = () => dispatch({ type: 'reset' })
 
     return (
         <>
-            <h1 className={styles.row}>
-                Quilt
+            <h1 className={clsx(styles.row, styles.noPrint)}>
+                Quilt Color Doodle
+                &mdash;
+                <a href="https://github.com/neolefty/quild">source code</a>
             </h1>
             <div className={clsx(styles.row, styles.noPrint)}>
                 <PickerToggles
@@ -43,6 +46,7 @@ const App: React.FC = () => {
                     toggleShowBorder={toggleShowBorder}
                     setQuiltSize={setQuiltSize}
                 />
+                <button onClick={reset} className={styles.reset}>Reset</button>
             </div>
             <div className={styles.noPrint}>
                 <Colors

@@ -54,6 +54,8 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
                 ...state,
                 borderColor: action.value
             }
+        case "reset":
+            return DEFAULT_APP_STATE
         default:
             return assertNever(action)
     }

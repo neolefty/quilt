@@ -17,6 +17,12 @@
     background: #eef;
 }
 
+.reset {
+    margin-left: 2em;
+    font-weight: bold;
+    font-size: 120%;
+}
+
 @media print {
     .noPrint {
         visibility: hidden;
