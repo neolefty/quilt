@@ -12,7 +12,10 @@ export const IntInput = (props: IntInputProps) =>
         {props.name}:
         <input
             className={styles.input}
-            type="integer"
+            type="number"
+            step="1"
+            min="1"
+            max="100"
             value={props.value}
             onChange={(e) => props.set(parseInt(e.target.value))}
             onKeyPress={(e) => {
