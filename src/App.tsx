@@ -45,7 +45,7 @@ const App: React.FC = () => {
                     setQuiltSize={setQuiltSize}
                 />
                 <button onClick={reset} className={styles.reset}>Reset</button>
-                <a href="https://github.com/neolefty/quilt" target="_blank" className={styles.source}>source code</a>
+                <a href="https://github.com/neolefty/quilt" className={styles.source}>source code</a>
             </div>
             <div className={styles.noPrint}>
                 <Colors
