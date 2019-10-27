@@ -17,6 +17,8 @@ const App: React.FC = () => {
     const quilt = starGrid(state.quiltSize.x, state.quiltSize.y)
 
     const changeColor = (index: number, color: string) => dispatch({ type: "change color", index, color })
+    const resetColor = () => dispatch({ type: "reset colors" })
+    const dedup = () => dispatch({ type: "dedup colors" })
     const setBorderColor = (value: string) => dispatch({type: "border color", value})
     const addColor = () => dispatch({ type: "add color" })
     const doubleColors = (value?: number) => dispatch({ type: "double colors", value })
@@ -54,6 +56,8 @@ const App: React.FC = () => {
                     add={addColor}
                     double={doubleColors}
                     change={changeColor}
+                    reset={resetColor}
+                    dedup={dedup}
                 />
             </div>
             <QuiltSvg

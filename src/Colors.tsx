@@ -11,6 +11,8 @@ interface ColorsProps {
     add: () => void
     double: (index?: number) => void
     change: (index: number, color: string) => void
+    reset: () => void
+    dedup: () => void
 }
 
 export const Colors = (props: ColorsProps) => {
@@ -25,7 +27,12 @@ export const Colors = (props: ColorsProps) => {
             <h2 className={appStyles.row}>
                 Colors&nbsp;
                 <button onClick={props.add}>+</button>
-                <button onClick={() => props.double()}>2x</button>
+                <button onClick={() => props.double()} disabled={props.colors.size >= 100}>2x</button>
+                <button onClick={props.dedup}>De-duplicate</button>
+                &nbsp;
+                <button onClick={props.reset}>Reset</button>
+                &nbsp;
+                {props.colors.size}
             </h2>
             {
                 props.colors.map((color: string, index: number) => (

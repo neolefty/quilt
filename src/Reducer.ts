@@ -1,6 +1,6 @@
 import {List} from "immutable"
 import {AppAction} from "./Action"
-import {assertNever} from "./Common"
+import {assertNever, Dedup} from "./Common"
 import {AppState, DEFAULT_APP_STATE} from "./State"
 
 export type AppReducerType = (state: AppState, action: AppAction) => AppState
@@ -56,6 +56,16 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
             }
         case "reset":
             return DEFAULT_APP_STATE
+        case "reset colors":
+            return {
+                ...state,
+                colors: DEFAULT_APP_STATE.colors,
+            }
+        case "dedup colors":
+            return {
+            ...state,
+            colors: Dedup(state.colors),
+        }
         default:
             return assertNever(action)
     }
