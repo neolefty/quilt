@@ -1,17 +1,18 @@
 .base {
     margin: 3px;
-    padding: 3px;
+    padding: 3px 5px 2px;
     cursor: default;
-}
-
-.true {
-    composes: base;
-    color: rgba(255, 255, 255, 100);
-    background: black;
+    border: 1px dotted #777;
 }
 
 .false {
     composes: base;
+    color: #ccc;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.true {
+    composes: base;
     color: black;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.8);
 }

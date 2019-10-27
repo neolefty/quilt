@@ -33,7 +33,7 @@ const App: React.FC = () => {
             <h1 className={clsx(styles.row, styles.noPrint)}>
                 Quilt Color Doodle
             </h1>
-            <div className={clsx(styles.row, styles.noPrint)}>
+            <div className={clsx(styles.row, styles.noPrint, styles.showUp)}>
                 <PickerToggles
                     pickers={state.pickers}
                     toggle={togglePicker}

@@ -23,8 +23,15 @@
     font-size: 120%;
 }
 
+.showUp {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    padding: 0.2em;
+}
+
 .source {
     margin-left: 2rem;
+    color: white;
 }
 
 @media print {
