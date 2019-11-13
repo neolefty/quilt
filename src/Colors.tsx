@@ -26,14 +26,12 @@ export const Colors = (props: ColorsProps) => {
     return (
         <div className={appStyles.column}>
             <h2 className={appStyles.row}>
-                Colors&nbsp;
+                {props.colors.size} Colors&nbsp;
                 <button onClick={props.add}>+</button>
                 <button onClick={() => props.double()} disabled={props.colors.size >= 100}>2x</button>
                 <button onClick={props.dedup}>De-duplicate</button>
                 &nbsp;
                 <button onClick={props.reset}>Reset</button>
-                &nbsp;
-                {props.colors.size}
             </h2>
             {
                 props.colors.map((color: string, index: number) => (
