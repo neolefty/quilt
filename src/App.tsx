@@ -24,6 +24,8 @@ const App: React.FC = () => {
     const addColor = () => dispatch({ type: "add color" })
     const doubleColors = (value?: number) => dispatch({ type: "double colors", value })
     const removeColor = (index: number) => dispatch({ type: "remove color", index })
+    const moveColor = (origin: number, delta: number) => dispatch({ type: "move color", origin, delta })
+
     const togglePicker = (name: string) => dispatch({ type: "toggle picker", name })
     const toggleShowBorder = () => dispatch({ type: 'show border', value: !state.showBorder })
     const setQuiltSize = (value: Point) => dispatch({ type: 'change quilt size', value })
@@ -60,6 +62,7 @@ const App: React.FC = () => {
                             change={changeColor}
                             reset={resetColor}
                             dedup={dedup}
+                            move={moveColor}
                         />
                     </div>
                     {

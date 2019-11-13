@@ -13,6 +13,7 @@ interface ColorsProps {
     change: (index: number, color: string) => void
     reset: () => void
     dedup: () => void
+    move: (origin: number, delta: number) => void
 }
 
 export const Colors = (props: ColorsProps) => {
@@ -55,6 +56,8 @@ export const Colors = (props: ColorsProps) => {
                         }
                         <button onClick={() => props.double(index)}>+</button>
                         <button onClick={() => props.remove(index)}>-</button>
+                        <button onClick={() => props.move(index, -1)}>^</button>
+                        <button onClick={() => props.move(index, 1)}>v</button>
                     </div>
                 ))
             }

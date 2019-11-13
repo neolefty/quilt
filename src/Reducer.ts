@@ -49,6 +49,14 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
                     })
                 )
             }
+        case "move color":
+            let dest = action.origin + action.delta
+            if (dest < 0) dest = state.colors.size - 1 // wrap to end
+            if (dest >= state.colors.size) dest = 0 // wrap to start
+            return {
+                ...state,
+                colors: state.colors.remove(action.origin).insert(dest, state.colors.get(action.origin, "#000"))
+            }
         case "border color":
             return {
                 ...state,
