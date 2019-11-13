@@ -1,17 +1,14 @@
 .below {
     z-index: -1;
 }
-.quiltSvg {
-    width: 100vmin;
-    height: 100vmin;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-}
+
 .useItAll {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }

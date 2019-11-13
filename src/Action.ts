@@ -1,6 +1,8 @@
 import {Point} from './Point'
 
-export type AppAction = Action & (NullAction | ChangeColorAction | AddColorAction | RemoveColorAction | TogglePickerAction | ChangeQuiltSizeAction | ShowBorderAction | DoubleColorsAction | BorderColorAction | ResetAction | ResetColorsAction | DedupColorsAction )
+export type AppAction = Action & (
+    NullAction | ChangeColorAction | AddColorAction | RemoveColorAction | TogglePickerAction | ChangeQuiltSizeAction | ShowBorderAction | DoubleColorsAction | BorderColorAction | ResetAction | ResetColorsAction | DedupColorsAction | JustTheQuiltAction
+)
 
 export interface Action {
     type: string
@@ -60,4 +62,9 @@ export interface ResetColorsAction {
 
 export interface DedupColorsAction {
     type: "dedup colors"
+}
+
+export interface JustTheQuiltAction {
+    type: "just the quilt"
+    value: boolean
 }

@@ -66,6 +66,11 @@ export const AppReducer: AppReducerType = (state: AppState, action: AppAction) =
             ...state,
             colors: Dedup(state.colors),
         }
+        case "just the quilt":
+            return {
+                ...state,
+                justTheQuilt: action.value
+            }
         default:
             return assertNever(action)
     }
